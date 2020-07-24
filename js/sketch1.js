@@ -1,4 +1,5 @@
 const area = 400;
+
 let playerTurn = true;
 //The board variable refers to the 16 squares in this 4x4 tic tac toe game
 let board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -26,10 +27,23 @@ ctx.stroke();
 
 window.onload = function() {
   init();
+  swal({
+    title: "Let's Play!",
+    text: "Click to start",
+    icon: "success",
+    button: "Start",
+  });
 }
+
 
 //Runs on reset button click
 function reset() {
+  swal({
+  title: "Are you sure?",
+  text: "This will restart the game",
+  icon: "warning",
+  button: "YES",
+});
   winner = false;
   let index;
   document.getElementsByClassName("winScreen")[0].innerHTML = "";
@@ -205,13 +219,15 @@ function declareWinner(playerCount, aiCount, index) {
     [0, 5, 10, 15], [3, 6, 9, 12]
   ]
   for (let i = 0; i < winCombos[index].length; i++) {
-    document.getElementsByClassName("cells")[winCombos[index][i]].style.backgroundColor = "yellow";
+    document.getElementsByClassName("cells")[winCombos[index][i]].style.backgroundColor = "rgba(36, 8, 35,0.5)";
   }
   winner = true;
   if (playerCount == 4) {
     document.getElementsByClassName("winScreen")[0].innerHTML = "You won!";
+
   }
   else if (aiCount == 4) {
     document.getElementsByClassName("winScreen")[0].innerHTML = "You lose!";
+
   }
 }
